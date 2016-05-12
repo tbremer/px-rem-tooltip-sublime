@@ -6,9 +6,9 @@ class PXRem(sublime_plugin.EventListener):
 		syntax = view.settings().get('syntax')
 
 		SYNTAX_SEARCH = '(?:s|l)?(?:a|c|e)ss'
-		VALID_INPUT_SEARCH = '\.?\d+(?:px|rem)'
+		VALID_INPUT_SEARCH = '[\d.]+(?:px|rem)'
 		PX_SEARCH = 'px'
-		DIGIT_SEARCH = '(\.?\d+)'
+		DIGIT_SEARCH = '([\d.]+)'
 
 		popup_numbers = []
 
