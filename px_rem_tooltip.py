@@ -33,4 +33,4 @@ class PXRem(sublime_plugin.EventListener):
 
 		popup_string = ' '.join(popup_numbers)
 
-		view.show_popup(popup_string)
+		view.show_popup(popup_string, sublime.COOPERATE_WITH_AUTO_COMPLETE)
