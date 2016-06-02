@@ -3,6 +3,9 @@ import sublime, sublime_plugin
 
 class PXRem(sublime_plugin.EventListener):
 	def on_selection_modified(self, view):
+		if (view.is_popup_visible()) is True:
+			view.hide_popup();
+
 		syntax = view.settings().get('syntax')
 
 		SYNTAX_SEARCH = '(?:s|l)?(?:a|c|e)ss'
@@ -16,8 +19,12 @@ class PXRem(sublime_plugin.EventListener):
 			return
 
 		cur_line_text = view.substr(view.line(view.sel()[0]))
+		matches = re.findall(VALID_INPUT_SEARCH, cur_line_text)
 
-		for match in re.findall(VALID_INPUT_SEARCH, cur_line_text):
+		if len(matches) == 0:
+			return
+
+		for match in matches:
 			type_match = re.search(PX_SEARCH, match, re.IGNORECASE)
 
 			if type_match:
